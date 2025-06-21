@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Way - Conexión en tu Camino</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Iconos (Feather Icons) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <style>
+        /* Aplicar la fuente Inter a todo el cuerpo del documento */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Colores personalizados para el tema azul y café */
+        .bg-brand-blue { background-color: #2c3e50; }
+        .bg-brand-brown { background-color: #6F4E37; }
+        .bg-brand-light-brown { background-color: #f3e9e2; }
+        .text-brand-blue { color: #2c3e50; }
+        .text-brand-brown { color: #6F4E37; }
+        .border-brand-brown { border-color: #6F4E37; }
+        .hover\:bg-brand-blue-dark:hover { background-color: #1a252f; }
+        
+        /* Estilo para el scroll suave */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Animación de entrada para las secciones */
+        .section-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="bg-brand-light-brown text-gray-800">
+
+    <!-- ========== BARRA DE NAVEGACIÓN ========== -->
+    <nav class="bg-white/80 backdrop-blur-md shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="text-3xl font-black text-brand-blue">Easy<span class="text-brand-brown">Way</span></a>
+                </div>
+                <!-- Menú de escritorio -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#inicio" class="text-gray-600 hover:text-brand-brown px-3 py-2 rounded-md text-sm font-medium">Inicio</a>
+                        <a href="#nosotros" class="text-gray-600 hover:text-brand-brown px-3 py-2 rounded-md text-sm font-medium">Nosotros</a>
+                        <a href="#servicios" class="text-gray-600 hover:text-brand-brown px-3 py-2 rounded-md text-sm font-medium">Servicios</a>
+                        <a href="#mercado" class="text-gray-600 hover:text-brand-brown px-3 py-2 rounded-md text-sm font-medium">Mercado</a>
+                        <a href="#equipo" class="text-gray-600 hover:text-brand-brown px-3 py-2 rounded-md text-sm font-medium">Equipo</a>
+                        <a href="#contacto" class="bg-brand-brown text-white hover:bg-opacity-90 px-4 py-2 rounded-full text-sm font-medium shadow-lg transition-transform transform hover:scale-105">Contáctenos</a>
+                    </div>
+                </div>
+                <!-- Botón de menú móvil -->
+                <div class="-mr-2 flex md:hidden">
+                    <button id="mobile-menu-button" type="button" class="bg-brand-brown inline-flex items-center justify-center p-2 rounded-md text-white hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                        <span class="sr-only">Abrir menú principal</span>
+                        <svg class="block h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg class="hidden h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Menú móvil -->
+        <div class="md:hidden" id="mobile-menu">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#inicio" class="text-gray-600 hover:bg-brand-brown hover:text-white block px-3 py-2 rounded-md text-base font-medium">Inicio</a>
+                <a href="#nosotros" class="text-gray-600 hover:bg-brand-brown hover:text-white block px-3 py-2 rounded-md text-base font-medium">Nosotros</a>
+                <a href="#servicios" class="text-gray-600 hover:bg-brand-brown hover:text-white block px-3 py-2 rounded-md text-base font-medium">Servicios</a>
+                <a href="#mercado" class="text-gray-600 hover:bg-brand-brown hover:text-white block px-3 py-2 rounded-md text-base font-medium">Mercado</a>
+                <a href="#equipo" class="text-gray-600 hover:bg-brand-brown hover:text-white block px-3 py-2 rounded-md text-base font-medium">Equipo</a>
+                <a href="#contacto" class="bg-brand-brown text-white block px-3 py-2 rounded-md text-base font-medium">Contáctenos</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ========== SECCIÓN HÉROE (INICIO) ========== -->
+    <header id="inicio" class="relative bg-brand-blue text-white overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="relative z-10 pb-8 sm:pb-16 md:pb-20 lg:max-w-2xl lg:w-full lg:pb-28 xl:pb-32">
+                <main class="mt-10 mx-auto max-w-7xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
+                    <div class="sm:text-center lg:text-left">
+                        <h1 class="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
+                            <span class="block xl:inline">Easy Way</span>
+                            <span class="block text-amber-300 xl:inline">Conexión en tu Camino</span>
+                        </h1>
+                        <p class="mt-3 text-base text-gray-300 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                            Optimizamos tu movilidad y conectamos servicios esenciales en una sola aplicación. Viaja más rápido, seguro e informado por la ciudad y el país, las 24 horas del día.
+                        </p>
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                            <div class="rounded-md shadow">
+                                <a href="#servicios" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-brand-blue bg-white hover:bg-gray-200 md:py-4 md:text-lg md:px-10 transition-transform transform hover:scale-105">
+                                    Conocer Más
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+            </div>
+        </div>
+        <div class="lg:absolute lg:inset-y-0 lg:right-0 lg:w-1/2">
+            <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:w-full lg:h-full" 
+                 src="https://placehold.co/1000x800/2c3e50/FFFFFF?text=Movilidad+Inteligente" 
+                 alt="Imagen de movilidad inteligente y conectividad global"
+                 onerror="this.onerror=null;this.src='https://placehold.co/1000x800';">
+            <div class="absolute inset-0 bg-brand-blue opacity-30"></div>
+        </div>
+    </header>
+
+    <!-- ========== SECCIÓN NOSOTROS ========== -->
+    <section id="nosotros" class="py-20 bg-white section-fade-in">
+        <div class="container mx-auto px-6 md:px-12 xl:px-32">
+            <div class="mb-16 text-center">
+                <h2 class="text-4xl font-bold text-brand-blue md:text-5xl">Nuestra Esencia</h2>
+                <p class="text-lg text-gray-600 mt-4">Forjando el futuro de la movilidad urbana.</p>
+            </div>
+            <div class="grid gap-12 items-center md:grid-cols-2">
+                <!-- Misión -->
+                <div class="space-y-4 text-center sm:text-left">
+                     <span class="text-brand-brown font-semibold text-lg">Misión</span>
+                     <h3 class="text-3xl font-bold text-gray-800">Mantener a la Comunidad Informada</h3>
+                     <p class="text-gray-600">
+                        Queremos mantener informada a la comunidad sobre el estado de la movilidad en tiempo real. Cubrimos accidentes de tránsito, marchas, condiciones climáticas, daños en semáforos, cierres viales y más. Además, integramos información de cuerpos de seguridad como la Policía Nacional, Cruz Roja y bomberos, y conectamos con servicios privados para guiar a las personas hacia su destino de la forma más fácil, rápida y segura, las 24 horas del día.
+                     </p>
+                </div>
+                 <!-- Imagen Misión -->
+                 <div class="w-full">
+                    <img class="rounded-2xl shadow-xl mx-auto" src="https://placehold.co/500x350/6F4E37/FFFFFF?text=Misi%C3%B3n" alt="Persona conectando piezas de un rompecabezas que dice Misión" onerror="this.onerror=null;this.src='https://placehold.co/500x350';">
+                </div>
+            </div>
+            <div class="grid gap-12 items-center md:grid-cols-2 mt-16">
+                 <!-- Imagen Visión -->
+                 <div class="w-full md:order-last">
+                    <img class="rounded-2xl shadow-xl mx-auto" src="https://placehold.co/500x350/2c3e50/FFFFFF?text=Visi%C3%B3n" alt="Persona mirando al futuro con un telescopio, representando la visión de la empresa" onerror="this.onerror=null;this.src='https://placehold.co/500x350';">
+                </div>
+                <!-- Visión -->
+                <div class="space-y-4 text-center sm:text-left">
+                     <span class="text-brand-brown font-semibold text-lg">Visión</span>
+                     <h3 class="text-3xl font-bold text-gray-800">Cobertura Nacional y Reconocimiento</h3>
+                     <p class="text-gray-600">
+                         Nuestra meta es no solo consolidarnos en la ciudad de Santiago de Cali, sino también expandir nuestra cobertura a nivel nacional. Queremos dar a conocer nuestros servicios a toda la sociedad, convirtiéndonos en la aplicación de movilidad y servicios de referencia en todo el país.
+                     </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- ========== SECCIÓN OBJETIVOS ========== -->
+    <section id="objetivos" class="py-20 bg-brand-light-brown section-fade-in">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="mb-16 text-center">
+                <h2 class="text-4xl font-bold text-brand-blue md:text-5xl">Nuestros Objetivos</h2>
+                <p class="text-lg text-gray-600 mt-4">Las metas que nos impulsan a innovar.</p>
+            </div>
+            <div class="bg-white p-8 rounded-2xl shadow-xl">
+                <h3 class="text-2xl font-bold text-brand-brown text-center mb-6">Objetivo General</h3>
+                <p class="text-center text-xl text-gray-700 max-w-4xl mx-auto">
+                    Facilitar el acceso a información de movilidad y servicios desde una única aplicación, manteniendo a la comunidad informada y conectada donde quiera que se encuentre.
+                </p>
+                <hr class="my-8 border-gray-200">
+                <h3 class="text-2xl font-bold text-brand-brown text-center mb-8">Objetivos Específicos</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-blue text-white mb-4"><i data-feather="clock"></i></div>
+                        <h4 class="font-semibold text-lg text-gray-800">Ahorrar Tiempo</h4>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-blue text-white mb-4"><i data-feather="smartphone"></i></div>
+                        <h4 class="font-semibold text-lg text-gray-800">Agilizar Servicios de Apps</h4>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-blue text-white mb-4"><i data-feather="shield"></i></div>
+                        <h4 class="font-semibold text-lg text-gray-800">Facilitar Seguridad</h4>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-blue text-white mb-4"><i data-feather="heart"></i></div>
+                        <h4 class="font-semibold text-lg text-gray-800">Agilizar Servicios de Salud</h4>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-blue text-white mb-4"><i data-feather="sun"></i></div>
+                        <h4 class="font-semibold text-lg text-gray-800">Brindar Datos del Clima</h4>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <div class="flex items-center justify-center h-16 w-16 rounded-full bg-brand-blue text-white mb-4"><i data-feather="tool"></i></div>
+                        <h4 class="font-semibold text-lg text-gray-800">Informar sobre Talleres</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECCIÓN SERVICIOS ========== -->
+    <section id="servicios" class="py-20 bg-white section-fade-in">
+        <div class="container mx-auto px-6 md:px-12 xl:px-32">
+            <div class="mb-16 text-center">
+                <h2 class="text-4xl font-bold text-brand-blue md:text-5xl">Una Solución Integral</h2>
+                <p class="text-lg text-gray-600 mt-4">Todo lo que necesitas para moverte y vivir la ciudad, en un solo lugar.</p>
+            </div>
+            <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                <!-- Servicio 1: Ahorro de Tiempo -->
+                <div class="group p-6 sm:p-8 rounded-3xl bg-brand-light-brown border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="https://placehold.co/600x400/2c3e50/FFFFFF?text=Rutas+Eficientes"
+                            alt="Ilustración de rutas eficientes para ahorrar tiempo"
+                            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
+                    </div>
+                    <div class="mt-6 relative">
+                        <h3 class="text-2xl font-semibold text-gray-800">
+                            Ahorro de Tiempo
+                        </h3>
+                        <p class="mt-4 text-gray-600">
+                            Facilitamos el acceso a diferentes aplicaciones y servicios desde una única plataforma, optimizando tus desplazamientos y ahorrando tiempo valioso en la ciudad.
+                        </p>
+                    </div>
+                </div>
+                <!-- Servicio 2: Servicios de Seguridad -->
+                <div class="group p-6 sm:p-8 rounded-3xl bg-brand-light-brown border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="https://placehold.co/600x400/e74c3c/FFFFFF?text=Protecci%C3%B3n+en+Camino"
+                            alt="Ilustración de un escudo de seguridad"
+                            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
+                    </div>
+                    <div class="mt-6 relative">
+                        <h3 class="text-2xl font-semibold text-gray-800">
+                            Servicios de Seguridad
+                        </h3>
+                        <p class="mt-4 text-gray-600">
+                            Conexión directa con entidades de orden público y emergencias. Facilita la respuesta rápida de la Policía, Cruz Roja, bomberos y más.
+                        </p>
+                    </div>
+                </div>
+                <!-- Servicio 3: Agilidad en Salud -->
+                <div class="group p-6 sm:p-8 rounded-3xl bg-brand-light-brown border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="https://placehold.co/600x400/2ecc71/FFFFFF?text=Emergencias+y+Salud"
+                            alt="Ilustración de una cruz de salud"
+                            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
+                    </div>
+                    <div class="mt-6 relative">
+                        <h3 class="text-2xl font-semibold text-gray-800">
+                           Agilidad en Salud
+                        </h3>
+                        <p class="mt-4 text-gray-600">
+                            Acceso rápido a información y servicios de salud. Localiza centros médicos cercanos y contacta servicios de emergencia de manera eficiente.
+                        </p>
+                    </div>
+                </div>
+                <!-- Servicio 4: Información Local -->
+                <div class="group p-6 sm:p-8 rounded-3xl bg-brand-light-brown border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="https://placehold.co/600x400/6F4E37/FFFFFF?text=Explora+lo+Local"
+                            alt="Ilustración de un mapa con pines de ubicación"
+                            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
+                    </div>
+                    <div class="mt-6 relative">
+                        <h3 class="text-2xl font-semibold text-gray-800">
+                           Información Local y Turismo
+                        </h3>
+                        <p class="mt-4 text-gray-600">
+                           Brinda rápida visualización de servicios locales como hotelería, alimentación y puntos de interés turístico para que explores la ciudad como nunca antes.
+                        </p>
+                    </div>
+                </div>
+                 <!-- Servicio 5: Clima en tiempo real -->
+                 <div class="group p-6 sm:p-8 rounded-3xl bg-brand-light-brown border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="https://placehold.co/600x400/8e44ad/FFFFFF?text=Clima"
+                            alt="Ilustración del clima, sol y nubes"
+                            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
+                    </div>
+                    <div class="mt-6 relative">
+                        <h3 class="text-2xl font-semibold text-gray-800">
+                           Servicio Climatológico
+                        </h3>
+                        <p class="mt-4 text-gray-600">
+                           Planifica tu día con información precisa sobre el clima. Evita sorpresas y elige la mejor ruta y momento para tus desplazamientos.
+                        </p>
+                    </div>
+                </div>
+                <!-- Servicio 6: Asistencia Automotriz -->
+                <div class="group p-6 sm:p-8 rounded-3xl bg-brand-light-brown border border-gray-200 shadow-xl hover:shadow-2xl transition-all duration-300">
+                    <div class="relative overflow-hidden rounded-xl">
+                        <img src="https://placehold.co/600x400/7f8c8d/FFFFFF?text=Asistencia+Automotriz"
+                            alt="Ilustración de herramientas mecánicas"
+                            class="h-64 w-full object-cover object-top transition duration-500 group-hover:scale-105"
+                            onerror="this.onerror=null;this.src='https://placehold.co/600x400';">
+                    </div>
+                    <div class="mt-6 relative">
+                        <h3 class="text-2xl font-semibold text-gray-800">
+                          Asistencia Automotriz
+                        </h3>
+                        <p class="mt-4 text-gray-600">
+                           Conexión con talleres y servicios de asistencia automotriz para resolver cualquier imprevisto en tu camino de forma rápida y confiable.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECCIÓN MERCADO ========== -->
+    <section id="mercado" class="py-20 bg-brand-light-brown section-fade-in">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="mb-16 text-center">
+                <h2 class="text-4xl font-bold text-brand-blue md:text-5xl">Nuestro Mercado</h2>
+                <p class="text-lg text-gray-600 mt-4">Entendiendo el contexto para ofrecer la mejor solución.</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-white p-8 rounded-2xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-brand-brown mb-4">El Auge de las Apps Móviles</h3>
+                    <p class="text-gray-600 mb-4">El uso de aplicaciones ha crecido exponencialmente con la popularización de los smartphones. Tiendas como Google Play y App Store dominan el mercado, con más de 2.2 millones de apps disponibles y miles de millones de descargas.</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
+                        <div class="bg-brand-blue text-white p-4 rounded-lg">
+                            <p class="text-3xl font-bold">268+</p>
+                            <p>Mil Millones de descargas</p>
+                        </div>
+                        <div class="bg-brand-brown text-white p-4 rounded-lg">
+                            <p class="text-3xl font-bold">$77+</p>
+                            <p>Mil Millones de dólares en ingresos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-8 rounded-2xl shadow-xl">
+                    <h3 class="text-2xl font-bold text-brand-brown mb-4">La Movilidad en Cali</h3>
+                    <p class="text-gray-600 mb-4">En Santiago de Cali se realizan más de 4.3 millones de viajes diarios. El tiempo de viaje es un factor crucial, siendo el transporte masivo el que más tiempo requiere (64 min), comparado con la moto o vehículo particular (30 min).</p>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-center">
+                        <div class="bg-brand-blue text-white p-4 rounded-lg">
+                            <p class="text-3xl font-bold">4.3M+</p>
+                            <p>Viajes diarios en Cali</p>
+                        </div>
+                        <div class="bg-brand-brown text-white p-4 rounded-lg">
+                            <p class="text-3xl font-bold">29 min</p>
+                            <p>Tiempo promedio de viaje</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== ESTRATEGIA DE MERCADO Y NEGOCIO ========== -->
+    <section id="estrategia" class="py-20 bg-white section-fade-in">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="mb-16 text-center">
+                <h2 class="text-4xl font-bold text-brand-blue md:text-5xl">Nuestro Plan de Acción</h2>
+                <p class="text-lg text-gray-600 mt-4">Estrategia, innovación y viabilidad.</p>
+            </div>
+            <div class="space-y-12">
+                <!-- Estrategia de Mercado -->
+                <div>
+                    <h3 class="text-3xl font-bold text-brand-brown mb-6">Estrategia de Mercado</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                        <div class="bg-brand-light-brown p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Introducción</h4>
+                            <p class="text-gray-700">Inicialmente, por medio del "voz a voz" con círculos cercanos (familia, amigos, colegas) para generar una base de usuarios sólida.</p>
+                        </div>
+                        <div class="bg-brand-light-brown p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Venta</h4>
+                            <p class="text-gray-700">Venta directa del aplicativo a empresas de telecomunicaciones para integrarlo en sus ofertas de servicios.</p>
+                        </div>
+                        <div class="bg-brand-light-brown p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Precios</h4>
+                            <p class="text-gray-700">La descarga y el uso de la aplicación serán totalmente gratuitos para el usuario final.</p>
+                        </div>
+                        <div class="bg-brand-light-brown p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Promoción</h4>
+                            <p class="text-gray-700">Colaboraciones y actividades de publicidad con los youtubers más reconocidos de la región.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Análisis Financiero y de Riesgo -->
+                <div>
+                     <h3 class="text-3xl font-bold text-brand-brown mb-6">Análisis del Negocio</h3>
+                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                         <div class="bg-brand-light-brown p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Aspecto Innovador</h4>
+                            <p class="text-gray-700">Nuestra principal innovación es un servicio que brinda una conexión centralizada con diversas entidades públicas y privadas, mejorando la movilidad y la experiencia del consumidor desde una sola app.</p>
+                        </div>
+                        <div class="bg-brand-light-brown p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Análisis Financiero</h4>
+                            <p class="text-gray-700">Requerimos una inversión inicial de 2.4 millones de pesos mensuales durante 10 meses, para un total de 24 millones en nuestro primer año de operación.</p>
+                        </div>
+                        <div class="bg-brand-light-brown p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Análisis de Riesgo</h4>
+                            <p class="text-gray-700">Consideramos riesgos potenciales como virus en la plataforma, hackeos de software o daños en los metadatos, y trabajamos proactivamente en mitigarlos.</p>
+                        </div>
+                        <div class="bg-brand-light-brown p-6 rounded-lg">
+                            <h4 class="font-bold text-lg mb-2">Análisis Social y Talento</h4>
+                            <p class="text-gray-700">Nuestra motivación es resolver problemas de la comunidad, enfocándonos en urgencias y seguridad vial. Realizaremos convocatorias nacionales para contratar a los mejores programadores y diseñadores, ofreciendo participación accionaria.</p>
+                        </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECCIÓN EQUIPO COMPLETO ========== -->
+    <section id="equipo" class="py-20 bg-brand-light-brown section-fade-in">
+        <div class="container mx-auto px-6 md:px-12 xl:px-32">
+            <div class="mb-16 text-center">
+                <h2 class="text-4xl font-bold text-brand-blue md:text-5xl">Nuestro Equipo</h2>
+                <p class="text-lg text-gray-600 mt-4">Los líderes y fundadores que impulsan nuestra visión.</p>
+            </div>
+            <div class="grid gap-8 justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+                <!-- Miembro 1 -->
+                <div class="text-center">
+                    <img class="w-40 h-40 mx-auto rounded-full object-cover shadow-lg" src="https://placehold.co/200x200/6F4E37/FFFFFF?text=YE" alt="Foto de Yormi Erazo" onerror="this.onerror=null;this.src='https://placehold.co/200x200';">
+                    <h4 class="mt-4 text-xl font-semibold text-gray-800">Yormi Erazo</h4>
+                    <p class="text-brand-brown">Líder de Proyecto</p>
+                </div>
+                <!-- Miembro 2 -->
+                <div class="text-center">
+                    <img class="w-40 h-40 mx-auto rounded-full object-cover shadow-lg" src="https://placehold.co/200x200/2c3e50/FFFFFF?text=CL" alt="Foto de Carolina Lemos" onerror="this.onerror=null;this.src='https://placehold.co/200x200';">
+                    <h4 class="mt-4 text-xl font-semibold text-gray-800">Carolina Lemos</h4>
+                    <p class="text-brand-brown">Líder de Proyecto</p>
+                </div>
+                <!-- Miembro 3 -->
+                <div class="text-center">
+                    <img class="w-40 h-40 mx-auto rounded-full object-cover shadow-lg" src="https://placehold.co/200x200/6F4E37/FFFFFF?text=GE" alt="Foto de Genesis Escruceria" onerror="this.onerror=null;this.src='https://placehold.co/200x200';">
+                    <h4 class="mt-4 text-xl font-semibold text-gray-800">Genesis Escruceria</h4>
+                    <p class="text-brand-brown">Líder de Proyecto</p>
+                </div>
+                <!-- Miembro 4 -->
+                <div class="text-center">
+                    <img class="w-40 h-40 mx-auto rounded-full object-cover shadow-lg" src="https://placehold.co/200x200/2c3e50/FFFFFF?text=YQ" alt="Foto de Yeisson Quintero" onerror="this.onerror=null;this.src='https://placehold.co/200x200';">
+                    <h4 class="mt-4 text-xl font-semibold text-gray-800">Yeisson Quintero</h4>
+                     <p class="text-brand-brown">Líder de Proyecto</p>
+                </div>
+                <!-- Miembro 5 -->
+                <div class="text-center">
+                    <img class="w-40 h-40 mx-auto rounded-full object-cover shadow-lg" src="https://placehold.co/200x200/6F4E37/FFFFFF?text=YC" alt="Foto de Yudi Karina Caicedo" onerror="this.onerror=null;this.src='https://placehold.co/200x200';">
+                    <h4 class="mt-4 text-xl font-semibold text-gray-800">Yudi Karina Caicedo</h4>
+                     <p class="text-brand-brown">Líder de Proyecto</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== SECCIÓN CONTÁCTENOS ========== -->
+    <section id="contacto" class="relative py-20 bg-white section-fade-in">
+        <div class="container mx-auto px-6 md:px-12">
+            <div class="relative bg-brand-light-brown p-8 rounded-3xl shadow-2xl md:p-12 lg:flex lg:items-center lg:gap-8">
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold text-brand-blue md:text-4xl">Hablemos</h2>
+                    <p class="mt-4 text-gray-600">
+                        ¿Tienes preguntas, sugerencias o deseas colaborar con nosotros? Completa el formulario y nuestro equipo se pondrá en contacto contigo a la brevedad.
+                    </p>
+                    <div class="mt-8 space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="flex-shrink-0 w-10 h-10 bg-brand-brown/10 text-brand-brown rounded-full flex items-center justify-center">
+                                <i data-feather="map-pin"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg">Dirección</h3>
+                                <p class="text-gray-600">Carrera 26F #73 46 marroquin II, Cali, Colombia</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                             <div class="flex-shrink-0 w-10 h-10 bg-brand-brown/10 text-brand-brown rounded-full flex items-center justify-center">
+                                <i data-feather="briefcase"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg">Información Legal</h3>
+                                <p class="text-gray-600">Razón Social: Easy Way</p>
+                                <p class="text-gray-600">NIT: 1006268417</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 lg:mt-0 lg:w-1/2">
+                    <form action="#" class="space-y-6">
+                        <div>
+                            <label for="name" class="sr-only">Nombre Completo</label>
+                            <input type="text" name="name" id="name" placeholder="Nombre Completo" class="w-full rounded-lg border-gray-300 p-3 text-sm shadow-sm focus:border-brand-brown focus:ring-brand-brown">
+                        </div>
+                        <div>
+                            <label for="email" class="sr-only">Correo Electrónico</label>
+                            <input type="email" name="email" id="email" placeholder="Correo Electrónico" class="w-full rounded-lg border-gray-300 p-3 text-sm shadow-sm focus:border-brand-brown focus:ring-brand-brown">
+                        </div>
+                        <div>
+                            <label for="message" class="sr-only">Mensaje</label>
+                            <textarea name="message" id="message" rows="6" placeholder="Tu mensaje..." class="w-full rounded-lg border-gray-300 p-3 text-sm shadow-sm focus:border-brand-brown focus:ring-brand-brown"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-brand-brown hover:bg-opacity-90 md:py-4 md:text-lg md:px-10 transition-transform transform hover:scale-105">
+                                Enviar Mensaje
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="bg-brand-blue">
+        <div class="container mx-auto py-8 px-6 text-center text-white">
+            <p>&copy; <span id="year"></span> Easy Way. Todos los derechos reservados.</p>
+            <p class="text-sm text-gray-400 mt-2">Razón Social: Easy Way | NIT: 1006268417</p>
+        </div>
+    </footer>
+
+    <script>
+        // --- Script para el menú móvil ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const menuIcons = mobileMenuButton.querySelectorAll('svg');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+            menuIcons[0].classList.toggle('hidden');
+            menuIcons[1].classList.toggle('hidden');
+        });
+        
+        // --- Script para cerrar el menú móvil al hacer clic en un enlace ---
+        const mobileLinks = document.querySelectorAll('#mobile-menu a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                menuIcons[0].classList.remove('hidden');
+                menuIcons[1].classList.add('hidden');
+            });
+        });
+
+        // --- Script para el año actual en el footer ---
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // --- Script para inicializar los íconos de Feather ---
+        feather.replace();
+
+        // --- Script para la animación de entrada de las secciones ---
+        const sections = document.querySelectorAll('.section-fade-in');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+
+</body>
+</html>
